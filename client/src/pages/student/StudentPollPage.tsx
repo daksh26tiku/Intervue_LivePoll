@@ -14,6 +14,8 @@ const StudentPollPage: React.FC = () => {
     const { formatted, isExpired } = usePollTimer({
         remainingTime: currentPoll?.remainingTime ?? 0,
         isActive: currentPoll?.isActive ?? false,
+        startedAt: currentPoll?.startedAt,
+        timerDuration: currentPoll?.timerDuration,
     });
 
     // Redirect if kicked

@@ -16,6 +16,8 @@ const TeacherDashboard: React.FC = () => {
     const { formatted } = usePollTimer({
         remainingTime: currentPoll?.remainingTime ?? 0,
         isActive: currentPoll?.isActive ?? false,
+        startedAt: currentPoll?.startedAt,
+        timerDuration: currentPoll?.timerDuration,
     });
 
     // Join as teacher on mount

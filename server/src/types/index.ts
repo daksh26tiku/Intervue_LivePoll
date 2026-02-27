@@ -74,6 +74,8 @@ export interface PollResults {
     totalVotes: number;
     isActive: boolean;
     remainingTime: number;
+    startedAt: string;
+    timerDuration: number;
 }
 
 export interface PollState {

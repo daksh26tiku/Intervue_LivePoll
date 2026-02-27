@@ -237,6 +237,8 @@ class PollService {
             totalVotes,
             isActive: poll.isActive,
             remainingTime: Math.floor(remainingTime),
+            startedAt: poll.startedAt.toISOString(),
+            timerDuration: poll.timerDuration,
         };
     }
 }
