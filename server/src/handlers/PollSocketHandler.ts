@@ -68,6 +68,11 @@ export const setupPollSocketHandler = (io: Server): void => {
 
             // Broadcast new poll to ALL connected clients
             io.emit('poll:new', result.poll);
+
+            // Also broadcast the current active students so the teacher's new dashboard gets populated
+            io.emit('student:joined', {
+                students: studentService.getActiveStudents(),
+            });
         });
 
         // ─── Vote ────────────────────────────────────────────
