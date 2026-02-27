@@ -120,7 +120,6 @@ export const setupPollSocketHandler = (io: Server): void => {
         // ─── Reconnection / State Recovery ───────────────────
         socket.on('poll:getState', async (payload: { tabId?: string; role: string }) => {
             const state = await pollService.getCurrentState(payload.tabId);
-            const students = studentService.getActiveStudents();
 
             // If student is reconnecting, update their socket ID and notify others
             if (payload.role === 'student' && payload.tabId) {
@@ -134,6 +133,9 @@ export const setupPollSocketHandler = (io: Server): void => {
             } else if (payload.role === 'teacher') {
                 socket.join('teachers');
             }
+
+            // Get the updated list of students AFTER the user has reconnected and been marked active
+            const students = studentService.getActiveStudents();
 
             socket.emit('poll:state', {
                 currentPoll: state.currentPoll,
