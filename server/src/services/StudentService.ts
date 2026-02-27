@@ -33,6 +33,7 @@ class StudentService {
         const student = this.students.get(tabId);
         if (student) {
             student.socketId = socketId;
+            student.isActive = true;
         }
 
         try {
