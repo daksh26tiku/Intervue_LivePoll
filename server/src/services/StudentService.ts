@@ -83,7 +83,7 @@ class StudentService {
         for (const [tabId, student] of this.students.entries()) {
             if (student.socketId === socketId) {
                 student.isActive = false;
-                this.students.delete(tabId);
+                // Keep in map so they can reconnect via updateSocketId
                 break;
             }
         }

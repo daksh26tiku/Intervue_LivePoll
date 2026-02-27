@@ -122,10 +122,15 @@ export const setupPollSocketHandler = (io: Server): void => {
             const state = await pollService.getCurrentState(payload.tabId);
             const students = studentService.getActiveStudents();
 
-            // If student is reconnecting, update their socket ID
+            // If student is reconnecting, update their socket ID and notify others
             if (payload.role === 'student' && payload.tabId) {
                 await studentService.updateSocketId(payload.tabId, socket.id);
                 socket.join('students');
+
+                // Notify ALL clients that student is active again
+                io.emit('student:joined', {
+                    students: studentService.getActiveStudents(),
+                });
             } else if (payload.role === 'teacher') {
                 socket.join('teachers');
             }

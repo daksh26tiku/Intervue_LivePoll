@@ -55,12 +55,12 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
     // Persist state to sessionStorage
     useEffect(() => {
-        const { role, studentName, hasVoted, votedOption, kicked, currentPoll, students } = state;
+        const { role, studentName, hasVoted, votedOption, kicked, currentPoll, students, chatMessages } = state;
         sessionStorage.setItem(
             'poll_state',
-            JSON.stringify({ role, studentName, hasVoted, votedOption, kicked, currentPoll, students })
+            JSON.stringify({ role, studentName, hasVoted, votedOption, kicked, currentPoll, students, chatMessages })
         );
-    }, [state.role, state.studentName, state.hasVoted, state.votedOption, state.kicked, state.currentPoll, state.students]);
+    }, [state.role, state.studentName, state.hasVoted, state.votedOption, state.kicked, state.currentPoll, state.students, state.chatMessages]);
 
     // Socket lifecycle
     useEffect(() => {
